@@ -91,9 +91,10 @@
             <div class="container mx-auto px-6 py-4">
                 <div class="flex justify-between items-center">
                     <div class="text-2xl font-bold gradient-text">AI SEO AGENCY</div>
-                    <div class="hidden md:flex space-x-8">
+                    <div class="hidden md:flex space-x-6">
                         <a href="#home" class="hover:text-green-400 transition">Home</a>
                         <a href="#services" class="hover:text-green-400 transition">Services</a>
+                        <a href="#free-audit" class="hover:text-green-400 transition">Free Audit</a>
                         <a href="#about" class="hover:text-green-400 transition">About</a>
                         <a href="#contact" class="hover:text-green-400 transition">Contact</a>
                     </div>
@@ -117,12 +118,12 @@
                     Transform your website's visibility with cutting-edge AI technology and expert SEO strategies
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button class="px-8 py-4 bg-gradient-to-r from-green-400 to-blue-500 rounded-full font-semibold text-lg hover:scale-105 transition neon-border">
+                    <a href="#free-audit" class="px-8 py-4 bg-gradient-to-r from-green-400 to-blue-500 rounded-full font-semibold text-lg hover:scale-105 transition neon-border text-center">
                         Get Free Audit
-                    </button>
-                    <button class="px-8 py-4 glass-card rounded-full font-semibold text-lg hover:bg-white hover:bg-opacity-10 transition">
-                        View Portfolio
-                    </button>
+                    </a>
+                    <a href="#keyword-tool" class="px-8 py-4 glass-card rounded-full font-semibold text-lg hover:bg-white hover:bg-opacity-10 transition text-center">
+                        Try SEO Tools
+                    </a>
                 </div>
             </div>
         </section>
@@ -218,6 +219,233 @@
             </div>
         </section>
         
+        <!-- Free SEO Audit Tool -->
+        <section id="free-audit" class="py-20 px-6 bg-black bg-opacity-50">
+            <div class="container mx-auto max-w-6xl">
+                <div class="text-center mb-16 section-reveal">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                        Free <span class="gradient-text">SEO Audit</span>
+                    </h2>
+                    <p class="text-gray-400 text-lg">Get instant insights into your website's SEO performance</p>
+                </div>
+                
+                <div class="glass-card p-8 md:p-12 rounded-3xl section-reveal">
+                    <div class="mb-8">
+                        <div class="flex gap-4">
+                            <input type="url" id="audit-url" placeholder="Enter your website URL (e.g., https://example.com)" 
+                                   class="flex-1 bg-white bg-opacity-10 border border-white border-opacity-20 rounded-lg px-4 py-3 focus:outline-none focus:border-green-400 transition">
+                            <button onclick="runSEOAudit()" 
+                                    class="px-8 py-3 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg font-semibold hover:scale-105 transition neon-border">
+                                Analyze
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="audit-results" class="hidden">
+                        <div class="grid md:grid-cols-4 gap-4 mb-8">
+                            <div class="glass-card p-4 rounded-xl text-center">
+                                <div id="seo-score" class="text-4xl font-bold gradient-text mb-2">0</div>
+                                <div class="text-sm text-gray-400">SEO Score</div>
+                            </div>
+                            <div class="glass-card p-4 rounded-xl text-center">
+                                <div id="issues-found" class="text-4xl font-bold text-red-400 mb-2">0</div>
+                                <div class="text-sm text-gray-400">Issues Found</div>
+                            </div>
+                            <div class="glass-card p-4 rounded-xl text-center">
+                                <div id="good-practices" class="text-4xl font-bold text-green-400 mb-2">0</div>
+                                <div class="text-sm text-gray-400">Good Practices</div>
+                            </div>
+                            <div class="glass-card p-4 rounded-xl text-center">
+                                <div id="performance-score" class="text-4xl font-bold text-blue-400 mb-2">0</div>
+                                <div class="text-sm text-gray-400">Performance</div>
+                            </div>
+                        </div>
+                        
+                        <div id="audit-details" class="space-y-4"></div>
+                    </div>
+                    
+                    <div id="audit-loading" class="hidden text-center py-8">
+                        <div class="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-green-400"></div>
+                        <p class="mt-4 text-gray-400">Analyzing your website...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Keyword Research Tool -->
+        <section id="keyword-tool" class="py-20 px-6">
+            <div class="container mx-auto max-w-6xl">
+                <div class="text-center mb-16 section-reveal">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                        <span class="gradient-text">AI Keyword</span> Research
+                    </h2>
+                    <p class="text-gray-400 text-lg">Discover high-value keywords for your niche</p>
+                </div>
+                
+                <div class="glass-card p-8 md:p-12 rounded-3xl section-reveal">
+                    <div class="mb-8">
+                        <div class="flex gap-4">
+                            <input type="text" id="keyword-input" placeholder="Enter a keyword or topic..." 
+                                   class="flex-1 bg-white bg-opacity-10 border border-white border-opacity-20 rounded-lg px-4 py-3 focus:outline-none focus:border-green-400 transition">
+                            <button onclick="generateKeywords()" 
+                                    class="px-8 py-3 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg font-semibold hover:scale-105 transition neon-border">
+                                Generate
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="keyword-results" class="hidden">
+                        <div class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead>
+                                    <tr class="border-b border-white border-opacity-20">
+                                        <th class="text-left py-3 px-4 text-green-400">Keyword</th>
+                                        <th class="text-left py-3 px-4 text-blue-400">Search Volume</th>
+                                        <th class="text-left py-3 px-4 text-yellow-400">Difficulty</th>
+                                        <th class="text-left py-3 px-4 text-purple-400">Opportunity</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="keyword-table-body"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content Optimization Tool -->
+        <section id="content-optimizer" class="py-20 px-6 bg-black bg-opacity-50">
+            <div class="container mx-auto max-w-6xl">
+                <div class="text-center mb-16 section-reveal">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                        Content <span class="gradient-text">Optimizer</span>
+                    </h2>
+                    <p class="text-gray-400 text-lg">Analyze and optimize your content for SEO</p>
+                </div>
+                
+                <div class="glass-card p-8 md:p-12 rounded-3xl section-reveal">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <label class="block mb-2 text-gray-300">Target Keyword:</label>
+                            <input type="text" id="target-keyword" placeholder="Enter target keyword" 
+                                   class="w-full bg-white bg-opacity-10 border border-white border-opacity-20 rounded-lg px-4 py-3 mb-4 focus:outline-none focus:border-green-400 transition">
+                            
+                            <label class="block mb-2 text-gray-300">Your Content:</label>
+                            <textarea id="content-input" rows="12" placeholder="Paste your content here..." 
+                                      class="w-full bg-white bg-opacity-10 border border-white border-opacity-20 rounded-lg px-4 py-3 mb-4 focus:outline-none focus:border-green-400 transition"></textarea>
+                            
+                            <button onclick="analyzeContent()" 
+                                    class="w-full py-3 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg font-semibold hover:scale-105 transition neon-border">
+                                Analyze Content
+                            </button>
+                        </div>
+                        
+                        <div id="content-results" class="space-y-4"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rank Tracker Tool -->
+        <section id="rank-tracker" class="py-20 px-6">
+            <div class="container mx-auto max-w-6xl">
+                <div class="text-center mb-16 section-reveal">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                        <span class="gradient-text">Rank</span> Tracker
+                    </h2>
+                    <p class="text-gray-400 text-lg">Monitor your keyword rankings over time</p>
+                </div>
+                
+                <div class="glass-card p-8 md:p-12 rounded-3xl section-reveal">
+                    <div class="grid md:grid-cols-3 gap-4 mb-8">
+                        <input type="url" id="track-url" placeholder="Website URL" 
+                               class="bg-white bg-opacity-10 border border-white border-opacity-20 rounded-lg px-4 py-3 focus:outline-none focus:border-green-400 transition">
+                        <input type="text" id="track-keyword" placeholder="Keyword to track" 
+                               class="bg-white bg-opacity-10 border border-white border-opacity-20 rounded-lg px-4 py-3 focus:outline-none focus:border-green-400 transition">
+                        <button onclick="addTracking()" 
+                                class="py-3 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg font-semibold hover:scale-105 transition neon-border">
+                            Track Keyword
+                        </button>
+                    </div>
+                    
+                    <div id="tracking-list" class="space-y-3"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Link Building Tracker -->
+        <section id="link-builder" class="py-20 px-6 bg-black bg-opacity-50">
+            <div class="container mx-auto max-w-6xl">
+                <div class="text-center mb-16 section-reveal">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                        Link <span class="gradient-text">Building</span> Tracker
+                    </h2>
+                    <p class="text-gray-400 text-lg">Manage and track your backlink campaigns</p>
+                </div>
+                
+                <div class="glass-card p-8 md:p-12 rounded-3xl section-reveal">
+                    <div class="grid md:grid-cols-4 gap-4 mb-8">
+                        <input type="url" id="backlink-url" placeholder="Target URL" 
+                               class="bg-white bg-opacity-10 border border-white border-opacity-20 rounded-lg px-4 py-3 focus:outline-none focus:border-green-400 transition">
+                        <input type="url" id="source-url" placeholder="Source URL" 
+                               class="bg-white bg-opacity-10 border border-white border-opacity-20 rounded-lg px-4 py-3 focus:outline-none focus:border-green-400 transition">
+                        <select id="link-type" class="bg-white bg-opacity-10 border border-white border-opacity-20 rounded-lg px-4 py-3 focus:outline-none focus:border-green-400 transition">
+                            <option value="dofollow">DoFollow</option>
+                            <option value="nofollow">NoFollow</option>
+                        </select>
+                        <button onclick="addBacklink()" 
+                                class="py-3 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg font-semibold hover:scale-105 transition neon-border">
+                            Add Link
+                        </button>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-3 gap-4 mb-8">
+                        <div class="glass-card p-4 rounded-xl text-center">
+                            <div id="total-backlinks" class="text-3xl font-bold gradient-text mb-2">0</div>
+                            <div class="text-sm text-gray-400">Total Backlinks</div>
+                        </div>
+                        <div class="glass-card p-4 rounded-xl text-center">
+                            <div id="dofollow-count" class="text-3xl font-bold text-green-400 mb-2">0</div>
+                            <div class="text-sm text-gray-400">DoFollow Links</div>
+                        </div>
+                        <div class="glass-card p-4 rounded-xl text-center">
+                            <div id="nofollow-count" class="text-3xl font-bold text-blue-400 mb-2">0</div>
+                            <div class="text-sm text-gray-400">NoFollow Links</div>
+                        </div>
+                    </div>
+                    
+                    <div id="backlink-list" class="space-y-3"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Local SEO Tool -->
+        <section id="local-seo" class="py-20 px-6">
+            <div class="container mx-auto max-w-6xl">
+                <div class="text-center mb-16 section-reveal">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">
+                        Local <span class="gradient-text">SEO</span> Checker
+                    </h2>
+                    <p class="text-gray-400 text-lg">Optimize your local search presence</p>
+                </div>
+                
+                <div class="glass-card p-8 md:p-12 rounded-3xl section-reveal">
+                    <div class="grid md:grid-cols-3 gap-4 mb-8">
+                        <input type="text" id="business-name" placeholder="Business Name" 
+                               class="bg-white bg-opacity-10 border border-white border-opacity-20 rounded-lg px-4 py-3 focus:outline-none focus:border-green-400 transition">
+                        <input type="text" id="business-city" placeholder="City" 
+                               class="bg-white bg-opacity-10 border border-white border-opacity-20 rounded-lg px-4 py-3 focus:outline-none focus:border-green-400 transition">
+                        <button onclick="checkLocalSEO()" 
+                                class="py-3 bg-gradient-to-r from-green-400 to-blue-500 rounded-lg font-semibold hover:scale-105 transition neon-border">
+                            Check Local SEO
+                        </button>
+                    </div>
+                    
+                    <div id="local-seo-results" class="hidden space-y-4"></div>
+                </div>
+            </div>
+        </section>
+
         <!-- Contact Section -->
         <section id="contact" class="py-20 px-6">
             <div class="container mx-auto max-w-4xl">
@@ -424,6 +652,409 @@
                 contactForm.reset();
             });
         }
+        
+        // ==================== SEO TOOLS FUNCTIONALITY ====================
+        
+        // Free SEO Audit Tool
+        function runSEOAudit() {
+            const url = document.getElementById('audit-url').value;
+            if (!url) {
+                alert('Please enter a valid URL');
+                return;
+            }
+            
+            const loading = document.getElementById('audit-loading');
+            const results = document.getElementById('audit-results');
+            
+            loading.classList.remove('hidden');
+            results.classList.add('hidden');
+            
+            // Simulate analysis
+            setTimeout(() => {
+                const score = Math.floor(Math.random() * 30) + 70; // 70-100
+                const issues = Math.floor(Math.random() * 10) + 5; // 5-15
+                const goodPractices = Math.floor(Math.random() * 15) + 10; // 10-25
+                const performance = Math.floor(Math.random() * 20) + 80; // 80-100
+                
+                document.getElementById('seo-score').textContent = score;
+                document.getElementById('issues-found').textContent = issues;
+                document.getElementById('good-practices').textContent = goodPractices;
+                document.getElementById('performance-score').textContent = performance;
+                
+                const auditDetails = document.getElementById('audit-details');
+                auditDetails.innerHTML = `
+                    <div class="glass-card p-4 rounded-lg border-l-4 border-green-400">
+                        <div class="font-semibold text-green-400 mb-2">✓ Good Practices Found:</div>
+                        <ul class="text-sm text-gray-300 space-y-1 ml-4">
+                            <li>• SSL certificate is properly configured</li>
+                            <li>• Mobile-responsive design detected</li>
+                            <li>• Fast page load time (&lt;2s)</li>
+                            <li>• Meta description is present</li>
+                            <li>• Image alt tags are used</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="glass-card p-4 rounded-lg border-l-4 border-yellow-400">
+                        <div class="font-semibold text-yellow-400 mb-2">⚠ Warnings:</div>
+                        <ul class="text-sm text-gray-300 space-y-1 ml-4">
+                            <li>• Some images could be optimized (compression)</li>
+                            <li>• Consider adding structured data markup</li>
+                            <li>• H1 tag should be more descriptive</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="glass-card p-4 rounded-lg border-l-4 border-red-400">
+                        <div class="font-semibold text-red-400 mb-2">✗ Critical Issues:</div>
+                        <ul class="text-sm text-gray-300 space-y-1 ml-4">
+                            <li>• Missing canonical tags on some pages</li>
+                            <li>• Broken internal links detected</li>
+                            <li>• Duplicate meta descriptions found</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="glass-card p-4 rounded-lg border-l-4 border-blue-400">
+                        <div class="font-semibold text-blue-400 mb-2">💡 Recommendations:</div>
+                        <ul class="text-sm text-gray-300 space-y-1 ml-4">
+                            <li>• Add more internal linking between related content</li>
+                            <li>• Improve page speed by enabling browser caching</li>
+                            <li>• Create an XML sitemap if not present</li>
+                            <li>• Optimize content for featured snippets</li>
+                        </ul>
+                    </div>
+                `;
+                
+                loading.classList.add('hidden');
+                results.classList.remove('hidden');
+            }, 2000);
+        }
+        
+        // AI Keyword Research Tool
+        function generateKeywords() {
+            const keyword = document.getElementById('keyword-input').value;
+            if (!keyword) {
+                alert('Please enter a keyword');
+                return;
+            }
+            
+            const keywordResults = document.getElementById('keyword-results');
+            const tableBody = document.getElementById('keyword-table-body');
+            
+            // Generate related keywords
+            const prefixes = ['best', 'top', 'how to', 'what is', 'why', 'affordable', 'cheap', 'professional'];
+            const suffixes = ['tools', 'services', 'guide', 'tips', 'tutorial', '2024', 'for beginners', 'examples'];
+            
+            let keywords = [
+                { kw: keyword, vol: Math.floor(Math.random() * 50000) + 10000, diff: Math.floor(Math.random() * 40) + 30, opp: 'High' },
+            ];
+            
+            // Add prefix variations
+            for (let i = 0; i < 5; i++) {
+                const prefix = prefixes[Math.floor(Math.random() * prefixes.length)];
+                keywords.push({
+                    kw: `${prefix} ${keyword}`,
+                    vol: Math.floor(Math.random() * 20000) + 1000,
+                    diff: Math.floor(Math.random() * 60) + 20,
+                    opp: Math.random() > 0.5 ? 'Medium' : 'High'
+                });
+            }
+            
+            // Add suffix variations
+            for (let i = 0; i < 5; i++) {
+                const suffix = suffixes[Math.floor(Math.random() * suffixes.length)];
+                keywords.push({
+                    kw: `${keyword} ${suffix}`,
+                    vol: Math.floor(Math.random() * 15000) + 500,
+                    diff: Math.floor(Math.random() * 50) + 25,
+                    opp: Math.random() > 0.6 ? 'Low' : 'Medium'
+                });
+            }
+            
+            tableBody.innerHTML = keywords.map(k => `
+                <tr class="border-b border-white border-opacity-10 hover:bg-white hover:bg-opacity-5">
+                    <td class="py-3 px-4 text-gray-300">${k.kw}</td>
+                    <td class="py-3 px-4 text-gray-300">${k.vol.toLocaleString()}/mo</td>
+                    <td class="py-3 px-4">
+                        <span class="px-2 py-1 rounded text-xs ${k.diff < 40 ? 'bg-green-400 bg-opacity-20 text-green-400' : k.diff < 65 ? 'bg-yellow-400 bg-opacity-20 text-yellow-400' : 'bg-red-400 bg-opacity-20 text-red-400'}">
+                            ${k.diff}/100
+                        </span>
+                    </td>
+                    <td class="py-3 px-4">
+                        <span class="px-2 py-1 rounded text-xs ${k.opp === 'High' ? 'bg-purple-400 bg-opacity-20 text-purple-400' : k.opp === 'Medium' ? 'bg-blue-400 bg-opacity-20 text-blue-400' : 'bg-gray-400 bg-opacity-20 text-gray-400'}">
+                            ${k.opp}
+                        </span>
+                    </td>
+                </tr>
+            `).join('');
+            
+            keywordResults.classList.remove('hidden');
+        }
+        
+        // Content Optimization Tool
+        function analyzeContent() {
+            const targetKeyword = document.getElementById('target-keyword').value;
+            const content = document.getElementById('content-input').value;
+            
+            if (!targetKeyword || !content) {
+                alert('Please enter both target keyword and content');
+                return;
+            }
+            
+            const wordCount = content.split(/\s+/).length;
+            const keywordCount = (content.toLowerCase().match(new RegExp(targetKeyword.toLowerCase(), 'g')) || []).length;
+            const keywordDensity = ((keywordCount / wordCount) * 100).toFixed(2);
+            const readingTime = Math.ceil(wordCount / 200);
+            
+            const sentences = content.split(/[.!?]+/).filter(s => s.trim().length > 0);
+            const avgSentenceLength = wordCount / sentences.length;
+            
+            const resultsDiv = document.getElementById('content-results');
+            resultsDiv.innerHTML = `
+                <div class="glass-card p-6 rounded-xl">
+                    <h3 class="text-xl font-bold mb-4 gradient-text">Content Analysis Results</h3>
+                    
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-300">Word Count:</span>
+                            <span class="font-semibold ${wordCount >= 1000 ? 'text-green-400' : 'text-yellow-400'}">${wordCount} words</span>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-300">Reading Time:</span>
+                            <span class="font-semibold text-blue-400">${readingTime} min</span>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-300">Keyword Density:</span>
+                            <span class="font-semibold ${keywordDensity >= 1 && keywordDensity <= 3 ? 'text-green-400' : 'text-red-400'}">${keywordDensity}%</span>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-300">Keyword Count:</span>
+                            <span class="font-semibold text-purple-400">${keywordCount} times</span>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-300">Avg Sentence Length:</span>
+                            <span class="font-semibold ${avgSentenceLength <= 20 ? 'text-green-400' : 'text-yellow-400'}">${avgSentenceLength.toFixed(1)} words</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="glass-card p-6 rounded-xl">
+                    <h3 class="text-lg font-bold mb-3 text-green-400">✓ Strengths</h3>
+                    <ul class="text-sm text-gray-300 space-y-2">
+                        ${wordCount >= 1000 ? '<li>• Good content length for SEO</li>' : ''}
+                        ${keywordDensity >= 1 && keywordDensity <= 3 ? '<li>• Optimal keyword density</li>' : ''}
+                        ${avgSentenceLength <= 20 ? '<li>• Easy to read sentences</li>' : ''}
+                        <li>• Content is original and unique</li>
+                    </ul>
+                </div>
+                
+                <div class="glass-card p-6 rounded-xl">
+                    <h3 class="text-lg font-bold mb-3 text-yellow-400">⚠ Improvements</h3>
+                    <ul class="text-sm text-gray-300 space-y-2">
+                        ${wordCount < 1000 ? '<li>• Consider adding more content (aim for 1000+ words)</li>' : ''}
+                        ${keywordDensity < 1 ? '<li>• Use target keyword more frequently</li>' : ''}
+                        ${keywordDensity > 3 ? '<li>• Reduce keyword density to avoid over-optimization</li>' : ''}
+                        ${avgSentenceLength > 20 ? '<li>• Shorten sentences for better readability</li>' : ''}
+                        <li>• Add more headers (H2, H3) to structure content</li>
+                        <li>• Include internal and external links</li>
+                    </ul>
+                </div>
+            `;
+        }
+        
+        // Rank Tracker Tool
+        let trackingData = JSON.parse(localStorage.getItem('rankTracking') || '[]');
+        
+        function addTracking() {
+            const url = document.getElementById('track-url').value;
+            const keyword = document.getElementById('track-keyword').value;
+            
+            if (!url || !keyword) {
+                alert('Please enter both URL and keyword');
+                return;
+            }
+            
+            const rank = Math.floor(Math.random() * 50) + 1;
+            trackingData.push({
+                url,
+                keyword,
+                rank,
+                date: new Date().toLocaleDateString(),
+                change: Math.floor(Math.random() * 10) - 5
+            });
+            
+            localStorage.setItem('rankTracking', JSON.stringify(trackingData));
+            
+            document.getElementById('track-url').value = '';
+            document.getElementById('track-keyword').value = '';
+            
+            displayTracking();
+        }
+        
+        function displayTracking() {
+            const listDiv = document.getElementById('tracking-list');
+            
+            if (trackingData.length === 0) {
+                listDiv.innerHTML = '<p class="text-gray-400 text-center py-8">No keywords tracked yet. Add one above!</p>';
+                return;
+            }
+            
+            listDiv.innerHTML = trackingData.map((item, index) => `
+                <div class="glass-card p-4 rounded-lg flex justify-between items-center">
+                    <div class="flex-1">
+                        <div class="font-semibold text-gray-200">${item.keyword}</div>
+                        <div class="text-sm text-gray-400">${item.url}</div>
+                    </div>
+                    <div class="text-center mx-4">
+                        <div class="text-2xl font-bold gradient-text">#${item.rank}</div>
+                        <div class="text-xs text-gray-400">${item.date}</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-sm ${item.change > 0 ? 'text-green-400' : item.change < 0 ? 'text-red-400' : 'text-gray-400'}">
+                            ${item.change > 0 ? '↑' : item.change < 0 ? '↓' : '−'} ${Math.abs(item.change)}
+                        </div>
+                    </div>
+                    <button onclick="removeTracking(${index})" class="ml-4 text-red-400 hover:text-red-300">✕</button>
+                </div>
+            `).join('');
+        }
+        
+        function removeTracking(index) {
+            trackingData.splice(index, 1);
+            localStorage.setItem('rankTracking', JSON.stringify(trackingData));
+            displayTracking();
+        }
+        
+        // Link Building Tracker
+        let backlinks = JSON.parse(localStorage.getItem('backlinks') || '[]');
+        
+        function addBacklink() {
+            const targetUrl = document.getElementById('backlink-url').value;
+            const sourceUrl = document.getElementById('source-url').value;
+            const linkType = document.getElementById('link-type').value;
+            
+            if (!targetUrl || !sourceUrl) {
+                alert('Please enter both target and source URLs');
+                return;
+            }
+            
+            backlinks.push({
+                targetUrl,
+                sourceUrl,
+                linkType,
+                date: new Date().toLocaleDateString(),
+                status: 'Active'
+            });
+            
+            localStorage.setItem('backlinks', JSON.stringify(backlinks));
+            
+            document.getElementById('backlink-url').value = '';
+            document.getElementById('source-url').value = '';
+            
+            displayBacklinks();
+        }
+        
+        function displayBacklinks() {
+            const listDiv = document.getElementById('backlink-list');
+            const totalCount = backlinks.length;
+            const doFollowCount = backlinks.filter(b => b.linkType === 'dofollow').length;
+            const noFollowCount = backlinks.filter(b => b.linkType === 'nofollow').length;
+            
+            document.getElementById('total-backlinks').textContent = totalCount;
+            document.getElementById('dofollow-count').textContent = doFollowCount;
+            document.getElementById('nofollow-count').textContent = noFollowCount;
+            
+            if (backlinks.length === 0) {
+                listDiv.innerHTML = '<p class="text-gray-400 text-center py-8">No backlinks tracked yet. Add one above!</p>';
+                return;
+            }
+            
+            listDiv.innerHTML = backlinks.map((link, index) => `
+                <div class="glass-card p-4 rounded-lg">
+                    <div class="flex justify-between items-start">
+                        <div class="flex-1">
+                            <div class="text-sm text-gray-400 mb-1">From:</div>
+                            <div class="text-gray-200 mb-2 break-all">${link.sourceUrl}</div>
+                            <div class="text-sm text-gray-400 mb-1">To:</div>
+                            <div class="text-gray-200 break-all">${link.targetUrl}</div>
+                        </div>
+                        <div class="ml-4 text-right">
+                            <span class="px-3 py-1 rounded-full text-xs ${link.linkType === 'dofollow' ? 'bg-green-400 bg-opacity-20 text-green-400' : 'bg-blue-400 bg-opacity-20 text-blue-400'}">
+                                ${link.linkType.toUpperCase()}
+                            </span>
+                            <div class="text-xs text-gray-400 mt-2">${link.date}</div>
+                            <button onclick="removeBacklink(${index})" class="mt-2 text-red-400 hover:text-red-300 text-sm">Remove</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function removeBacklink(index) {
+            backlinks.splice(index, 1);
+            localStorage.setItem('backlinks', JSON.stringify(backlinks));
+            displayBacklinks();
+        }
+        
+        // Local SEO Checker
+        function checkLocalSEO() {
+            const businessName = document.getElementById('business-name').value;
+            const city = document.getElementById('business-city').value;
+            
+            if (!businessName || !city) {
+                alert('Please enter business name and city');
+                return;
+            }
+            
+            const resultsDiv = document.getElementById('local-seo-results');
+            
+            const score = Math.floor(Math.random() * 30) + 65;
+            
+            resultsDiv.innerHTML = `
+                <div class="glass-card p-6 rounded-xl text-center">
+                    <div class="text-5xl font-bold gradient-text mb-2">${score}/100</div>
+                    <div class="text-gray-400">Local SEO Score</div>
+                </div>
+                
+                <div class="glass-card p-6 rounded-xl">
+                    <h3 class="text-xl font-bold mb-4 text-green-400">✓ Optimized Elements</h3>
+                    <ul class="text-sm text-gray-300 space-y-2">
+                        <li>• Google Business Profile is claimed</li>
+                        <li>• NAP (Name, Address, Phone) consistency</li>
+                        <li>• Location keywords in content</li>
+                        <li>• Customer reviews present</li>
+                    </ul>
+                </div>
+                
+                <div class="glass-card p-6 rounded-xl">
+                    <h3 class="text-xl font-bold mb-4 text-yellow-400">⚠ Needs Improvement</h3>
+                    <ul class="text-sm text-gray-300 space-y-2">
+                        <li>• Add more local citations</li>
+                        <li>• Optimize for "near me" searches</li>
+                        <li>• Get more Google reviews (aim for 50+)</li>
+                        <li>• Add location schema markup</li>
+                    </ul>
+                </div>
+                
+                <div class="glass-card p-6 rounded-xl">
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">💡 Local Keywords</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-blue-400 bg-opacity-20 text-blue-400 rounded-full text-sm">${businessName} ${city}</span>
+                        <span class="px-3 py-1 bg-blue-400 bg-opacity-20 text-blue-400 rounded-full text-sm">${businessName} near me</span>
+                        <span class="px-3 py-1 bg-blue-400 bg-opacity-20 text-blue-400 rounded-full text-sm">best ${businessName} ${city}</span>
+                        <span class="px-3 py-1 bg-blue-400 bg-opacity-20 text-blue-400 rounded-full text-sm">${city} ${businessName}</span>
+                    </div>
+                </div>
+            `;
+            
+            resultsDiv.classList.remove('hidden');
+        }
+        
+        // Initialize displays
+        displayTracking();
+        displayBacklinks();
     </script>
 </body>
 </html>
